@@ -12,7 +12,7 @@ def file_or_folder():
 
 #Method for make the backup folder name
 def make_backup_dir_name(dest):
-    time = datetime.now().strftime("%H%M%S-%d-%m-%y")
+    time = datetime.now().strftime("%d-%m-%y %H;%M;%S")
     add = dest+"/backup-"+time
     return add
 
