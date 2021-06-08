@@ -1,7 +1,8 @@
-import os
-import shutil
-from datetime import datetime
+import os #Import af "OS" libary til at tjekke og verificer stier som vi bruger til at vælge src og destination for backup.
+import shutil #Import af "Shutil" libary denne bruger vi til at lave selve backup'en - det er en som indeholder copy command.
+from datetime import datetime #Import af "Datetime" som vi bruger i navngivningen af backup mappen.
 
+#Metode til backup valg - inderholder loop til valg af backup funktion.
 def file_or_folder():
     while True:
         choice = input("Please chose Folder or File\n-->")
@@ -10,13 +11,13 @@ def file_or_folder():
             return choice
 
 
-#Method for make the backup folder name
+#Metode til mappe oprettelse samt navngivning.
 def make_backup_dir_name(dest):
     time = datetime.now().strftime("%d-%m-%y %H;%M;%S")
     add = dest+"/backup-"+time
     return add
 
-
+#Kode til valg af src & destination address for backup.
 if __name__ == '__main__':
     src_addr = ""
     dest_addr = ""
@@ -34,10 +35,10 @@ if __name__ == '__main__':
             file_exists = os.path.exists(dest_addr)
             if not file_exists:
                 print("Please write a real path")
-        #Now we can make a dir for the backup
+        #Opretter mappe ud fra vores angivende metode.
         backup_addr = make_backup_dir_name(dest_addr)
         os.mkdir(backup_addr)
-        #Do the backup
+        #Laver backup (copy).
         shutil.copy(src_addr, backup_addr)
 
     elif backup_type == "folder":
@@ -54,9 +55,9 @@ if __name__ == '__main__':
             if not file_exists:
                 print("Please write a real path")
 
-        # Now we can make a dir for the backup
+        #Opretter mappe ud fra vores angivende metode.
         backup_addr = make_backup_dir_name(dest_addr)
-        # Do the backup
+        #Laver backup (copy).
         shutil.copytree(src_addr, backup_addr)
 
 
